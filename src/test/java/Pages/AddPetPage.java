@@ -42,7 +42,6 @@ public class AddPetPage {
         bodyText.clear();
         bodyText.sendKeys(jsonBody);
         js.executeScript("window.scrollBy(0,100)", "");
-
         executeButton.click();
     }
 

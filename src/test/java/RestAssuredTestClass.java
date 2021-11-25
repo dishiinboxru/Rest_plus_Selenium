@@ -1,25 +1,24 @@
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.response.Response;
+
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
 public class RestAssuredTestClass {
 
-    final static String url="http://demo.guru99.com/V4/sinkministatement.php?CUSTOMER_ID=68195&PASSWORD=1234!&Account_No=1";
-    final static String petstoreUrl="http://petstore.swagger.io/";
+
     final static String petstoreUrlHardcoded="https://petstore.swagger.io/v2/pet/777";
 
     protected static RequestSpecification requestSpec;
 
 
-    @Test
+    @Test(priority = 1)
     public void getPet(){
         given().
                 when()
-//                .get(petstoreUrl + "/v2/pet/777")
                 .get(petstoreUrlHardcoded) //TODO - remove hardcoded into builder or variables
                 .then()
                 .assertThat()
@@ -27,7 +26,7 @@ public class RestAssuredTestClass {
 
     }
 
-    @Test
+    @BeforeTest
     public void postPet(){
 
         RequestSpecBuilder builder = new RequestSpecBuilder();
@@ -61,34 +60,21 @@ public class RestAssuredTestClass {
 
     }
 
+    @Test(priority = 2)
+    public void removePet(){
+        given().
+                when()
+                .delete(petstoreUrlHardcoded) //TODO - remove hardcoded into builder or variables
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_OK);
 
-    @Test
-    public void basisTest() {
-
-        getResponseBody();
-        getResponseStatus();
-
-        ; }
-
-    //This will fetch the response body as is and log it. given and when are optional here
-    public void getResponseBody(){
-
-        given().when().get(url).then().log()
-                .all();
-
-        given().queryParam("CUSTOMER_ID","68195")
-                .queryParam("PASSWORD","1234!")
-                .queryParam("Account_No","1") .when().get("http://demo.guru99.com/V4/sinkministatement.php").then().log().body();
+        given().
+                when()
+                .get(petstoreUrlHardcoded) //TODO - remove hardcoded into builder or variables
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_NOT_FOUND);
     }
 
-    public void getResponseStatus(){
-        int statusCode= given().queryParam("CUSTOMER_ID","68195")
-                .queryParam("PASSWORD","1234!")
-                .queryParam("Account_No","1")
-                .when().get("http://demo.guru99.com/V4/sinkministatement.php").getStatusCode();
-        System.out.println("The response status is "+statusCode);
-
-        given().when().get(url).then().assertThat().statusCode(200);
     }
-
-}

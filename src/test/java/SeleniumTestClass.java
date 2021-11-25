@@ -54,23 +54,16 @@ public class SeleniumTestClass {
         AddPetPage addPetPage = new AddPetPage(driver);
         addPetPage.clickOnTry();
         //click on post
-
         addPetPage.sendPetText(jsonBody);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,500)", "");
-        //assert the success was received - ?
 
         Assert.assertEquals(addPetPage.getResponseCode(), HttpStatus.SC_OK);
 
-
-
-
-
-
     }
 
-    @AfterTest(enabled = true)
+    @AfterTest
     public void teardown(){
         //finish and close the driver - maybe to teardown
          driver.close();

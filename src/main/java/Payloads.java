@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class Payloads {
 
-    public static String requestPayloadWithPet(String filterKeyword, String expectedValue, Boolean removeMatches) throws IOException { //why exceptions here ?
+    public static String requestPayloadWithPet(String filterKeyword, String expectedValue, Boolean removeMatches) {
         JSONObject requestPayload = new JSONObject();
         requestPayload.put("searchKeyword", "");
         requestPayload.put("debug", true);
