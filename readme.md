@@ -13,10 +13,12 @@ Known timeout solutions (Thread.sleep, awaitly )  doesn't solve the situation so
 4 - json body generator as separate class
 
 5 - test 4 - due to test site itself being too sluggish the errors create themselves at times.
+6- no fancy reporting ( like allure)
 
 Time estimates to complete the whole thing to the end
 1 - a - if it means being able to configure the website address - 1 day
 1 - d - JSON format for interactions - 1-2 h , I've already know that JSONObject is to be used, just didn't have time to convert those properly from strings.
 extra 1 - POJO conversion - not sure what's that for since JSONObject seems to be sufficient, but can be done in 3-4 hours 
+known issues - 1-2 days
 
-thus extra 2 days might be enough.
+thus extra 3-5 days might be enough.
